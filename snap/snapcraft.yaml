@@ -1,0 +1,22 @@
+name: ulimit-snap
+base: core20 
+version: '0.1'
+summary: ulimit test snap to use command-chain
+description: |
+  ulimit test snap
+
+grade: stable
+confinement: strict
+
+apps:
+  ulimit:
+    daemon: simple
+    command-chain: [increase-ulimit.sh]
+    command: print-ulimit.sh
+    plugs:
+      - process-control
+
+parts:
+  ulimit:
+    plugin: dump
+    source: bin
